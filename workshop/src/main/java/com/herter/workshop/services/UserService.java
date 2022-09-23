@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -31,5 +32,17 @@ public class UserService {
 
     public void delete(String id){
         repo.deleteById(id);
+    }
+
+    public User update(User obj){
+        User objNew = repo.findById(obj.getId()).orElse(null);
+        upDateData(objNew,obj);
+        return repo.save(objNew);
+
+    }
+
+    public void upDateData(User newObj, User obj){
+        newObj.setName(obj.getName());
+        newObj.setEmail(obj.getEmail());
     }
 }
