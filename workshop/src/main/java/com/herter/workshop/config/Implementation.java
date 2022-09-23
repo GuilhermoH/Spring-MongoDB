@@ -10,11 +10,12 @@ import org.springframework.context.annotation.Configuration;
 public class Implementation implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
+
     @Override
     public void run(String... args) throws Exception {
         userRepository.deleteAll();
-        User firstUser =  new User("123","Guilhermo","guilhermoh@gmail.com") ;
-        User secondUser =  new User("456","Matheus","guilhermoh@gmail.com") ;
+        User firstUser = new User("123", "Guilhermo", "guilhermoh@gmail.com");
+        User secondUser = new User("456", "Matheus", "guilhermoh@gmail.com");
         userRepository.save(firstUser);
         userRepository.save(secondUser);
     }
