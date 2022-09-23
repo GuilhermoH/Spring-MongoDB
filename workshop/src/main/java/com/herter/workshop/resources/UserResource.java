@@ -14,8 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -36,6 +35,12 @@ public class UserResource {
     public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         User obj = service.findById(id);
         return ResponseEntity.ok().body(new UserDTO(obj));
+
+    }
+    @RequestMapping(value = "/{id}", method = DELETE)
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+         service.delete(id);
+        return ResponseEntity.noContent().build();
 
     }
 
