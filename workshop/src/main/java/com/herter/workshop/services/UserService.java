@@ -30,18 +30,18 @@ public class UserService {
         return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 
-    public void delete(String id){
+    public void delete(String id) {
         repo.deleteById(id);
     }
 
-    public User update(User obj){
+    public User update(User obj) {
         User objNew = repo.findById(obj.getId()).orElse(null);
-        upDateData(objNew,obj);
+        upDateData(objNew, obj);
         return repo.save(objNew);
 
     }
 
-    public void upDateData(User newObj, User obj){
+    public void upDateData(User newObj, User obj) {
         newObj.setName(obj.getName());
         newObj.setEmail(obj.getEmail());
     }

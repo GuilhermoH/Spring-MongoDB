@@ -24,14 +24,14 @@ public class User implements Serializable {
     private String id;
     private String name;
     private String email;
-    
+
     @DBRef(lazy = true)
-    private List<Post> post= new ArrayList<>();
+    private List<Post> post = new ArrayList<>();
 
     public User(String id, String name, String email) {
-        this.id=id;
-        this.name=name;
-        this.email=email;
+        this.id = id;
+        this.name = name;
+        this.email = email;
     }
 
     @Override

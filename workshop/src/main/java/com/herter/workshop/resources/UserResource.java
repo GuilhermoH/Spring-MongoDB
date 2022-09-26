@@ -33,7 +33,7 @@ public class UserResource {
     }
 
     @RequestMapping(value = "/{id}/posts", method = GET)
-    public ResponseEntity <List<Post>>findPost(@PathVariable String id) {
+    public ResponseEntity<List<Post>> findPost(@PathVariable String id) {
         User obj = service.findById(id);
         return ResponseEntity.ok().body(obj.getPost());
 
