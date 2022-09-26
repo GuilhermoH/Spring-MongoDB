@@ -1,5 +1,6 @@
 package com.herter.workshop.domain;
 
+import com.herter.workshop.dto.AuthorDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,7 @@ public class Post implements Serializable {
 
 @Id
     private String id;
-    private User author;
+    private AuthorDTO author;
     private Date date;
     private String title;
     private String body;
