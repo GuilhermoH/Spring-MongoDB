@@ -1,5 +1,6 @@
 package com.herter.workshop.resources;
 
+import com.herter.workshop.domain.Post;
 import com.herter.workshop.domain.User;
 import com.herter.workshop.dto.UserDTO;
 import com.herter.workshop.services.UserService;
@@ -31,15 +32,23 @@ public class UserResource {
 
     }
 
+    @RequestMapping(value = "/{id}/posts", method = GET)
+    public ResponseEntity <List<Post>>findPost(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPost());
+
+    }
+
     @RequestMapping(value = "/{id}", method = GET)
     public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         User obj = service.findById(id);
         return ResponseEntity.ok().body(new UserDTO(obj));
 
     }
+
     @RequestMapping(value = "/{id}", method = DELETE)
     public ResponseEntity<Void> delete(@PathVariable String id) {
-         service.delete(id);
+        service.delete(id);
         return ResponseEntity.noContent().build();
 
     }
@@ -52,8 +61,9 @@ public class UserResource {
         return ResponseEntity.created(uri).build();
 
     }
+
     @RequestMapping(value = "/{id}", method = PUT)
-    public ResponseEntity<Void> update(@RequestBody UserDTO objDto,@PathVariable String id ) {
+    public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id) {
         User obj = service.fromDto(objDto);
         obj.setId(id);
         service.update(obj);
